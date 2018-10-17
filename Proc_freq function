@@ -1,0 +1,12 @@
+subj_vars<-c('alternatives_initial', 'purpose_initial', 'benefits_initial', 'risks_initial', 'expect_before_initial', 'expect_during_initial',
+             'expect_after_initial', 'satisfied_so_far_initial', 'alternative_preop', 'purpose_preop', 'benefits_preop', 'risks_preop', 'expect_before_preop',
+             'expect_during_preop', 'expect_after_preop', 'satisfied_so_far_preop', 'alternatives_postop', 'purpose_postop', 
+             'benefits_postop', 'risks_postop', 'expect_before_postop', 'expect_during_postop', 'expect_after_postop', 'satisfied_so_far_postop')
+
+
+subjective<-function( x) {
+  count<-CrossTable(x, consent$group.factor, prop.c =T, prop.r=F, prop.chisq = F, prop.t=F)
+  return(count)
+}
+subj.results <- lapply(consent[obj_vars], subjective)
+print(subj.results)
