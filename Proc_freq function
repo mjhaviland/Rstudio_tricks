@@ -8,5 +8,5 @@ subjective<-function( x) {
   count<-CrossTable(x, consent$group.factor, prop.c =T, prop.r=F, prop.chisq = F, prop.t=F)
   return(count)
 }
-subj.results <- lapply(consent[obj_vars], subjective)
+subj.results <- lapply(consent[subj_vars], subjective)
 print(subj.results)
