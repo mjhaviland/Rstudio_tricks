@@ -1,3 +1,23 @@
+PROC UNIVARIATE
+
+cont_vars<-c('age', 'ndisorder', 'bmi', 'bmiz', 'dist_home_school', 'SE_total_pre', 'SE_total_post', 'SE_diff', 'freq_walk_diff')
+
+norm_test<-function( x) {
+  norm_test<-shapiro.test(x)
+  return(norm_test)}
+
+SW.results <- lapply(wsb_mi_clean[cont_vars], norm_test)
+print(SW.results)
+
+describe(wsb_mi_clean[cont_vars])
+
+qplot(sample = age, data = wsb_mi_clean)
+
+
+
+PROC FREQ
+
+
 subj_vars<-c('alternatives_initial', 'purpose_initial', 'benefits_initial', 'risks_initial', 'expect_before_initial', 'expect_during_initial',
              'expect_after_initial', 'satisfied_so_far_initial', 'alternative_preop', 'purpose_preop', 'benefits_preop', 'risks_preop', 'expect_before_preop',
              'expect_during_preop', 'expect_after_preop', 'satisfied_so_far_preop', 'alternatives_postop', 'purpose_postop', 
