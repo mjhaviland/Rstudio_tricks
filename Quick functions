@@ -1,0 +1,2 @@
+#Convert factor to numeric
+as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
