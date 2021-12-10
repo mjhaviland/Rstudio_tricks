@@ -30,3 +30,14 @@ subjective<-function( x) {
 }
 subj.results <- lapply(consent[subj_vars], subjective)
 print(subj.results)
+
+#COMBINING VARIABLES
+FullText<-Analytic.Set %>%
+    select(personid, B, C) %>%
+    rename(Casenum=personid) %>%
+    mutate(ME=ifelse(!is.na(B), "Question: Medical Examiner/Coroner Report; Answer: ",""))%>%
+    mutate(LE=ifelse(!is.na(C), "Question: Law Enforcement; Answer: ",""))%>%
+    unite(., col = B2,  ME, B, na.rm=TRUE, sep = "") %>%
+    unite(., col = C2,  LE, C, na.rm=TRUE, sep = "") 
+
+FullText$combo<-paste(FullText$B2, FullText$C2, sep="\n\n", collapse=NULL)
